@@ -21,7 +21,7 @@ function Start() {
 	score = 0;
 	pac_color = "yellow";
 	monster_color = "red";
-	epic_food_color = "green";
+	epic_food_color = "orange";
 	legendary_food_color = "purple";
 	common_food_color = "black";
 	var cnt = 20 * 15;
