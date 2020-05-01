@@ -1,21 +1,260 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<script src="./jquery-3.4.1.slim.min.js"></script>
-		<script type="text/javascript" src="./app.js"></script>
-	</head>
 
-	<body>
-		<div id="score">
-			<label for="lblScore">SCORE:</label>
-			<input id="lblScore" type="text" />
+<head>
+	<link rel="stylesheet" type="text/css" href="style.css" />
+	<script src="./jquery-3.4.1.slim.min.js"></script>
+	<script src="cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+	<script src="cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+	<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+	<script type="text/javascript" src="jquery.validate.js"></script>
+	<script type="text/javascript" src="./pages.js"></script>
+	<script type="text/javascript" src="./app.js"></script>
+</head>
+
+<body id="website" style="display: block;">
+	<Menu class="tab">
+			<button id="Register" class="tablinks" onclick="changePage(event,'register')">Register</button>
+			<button id="Login" class="tablinks" onclick="changePage(event,'login')">Login</button>
+			<p><a href="#ex1" rel="modal:open" class="tablinks" role="button">About</a></p>
+	</Menu>
+	<br />
+	<div id="hello_user" style="text-align: left;">
+		<span style="text-align: left;" class="hello_user">
+			<label id="user_label" style="text-align: left" class="label_hello_user">Hello Guest!</label>
+		</span>
+	</div>
+	<Header class="header">
+		<table>
+			<tr>
+				<h1>Pacman Game</h1>
+			</tr>
+			<tr>
+				<h3 style="text-align: center;">Itai Katz & Tomer Seinfeld</h3>
+			</tr>
+		</table>
+		
+		<img src="./resources/logo_ghost_s.png" alt="Italian Trulli" style="width:200px;height:200px;" class="logo">
+	</Header>
+
+	<Content id="Content">
+		<div id="welcome_page" class="welcome_page">
+			<button onclick="changePage(event,'register')" class="firstpage_btn">Register</button>
+			<br />
+			<br />
+			<button onclick="changePage(event,'login')" class="firstpage_btn">Login</button>
 		</div>
-		<div id="time">
-			<label for="lblTime">TIME:</label>
-			<input id="lblTime" type="text" />
+
+		<div id="register" class="tabcontent">
+			<div id="errorContainer">
+				<p>Please correct the below errors:</p>
+				<ul>
+			</div>
+			<form id="registerForm" name="registerForm" class="form">
+				<label for="username">Username</label>
+				<input type="text" id="username" name="username" required><br>
+				<label for="password">Password</label>
+				<input type="password" id="password" name="password" required><br>
+				<label for="firstname">First Name</label>
+				<input type="text" id="firstname" name="firstname" required><br>
+				<label for="lastname">Last Name</label>
+				<input type="text" id="lastname" name="lastname" required><br>
+				<label for="email">Email</label>
+				<input type="text" id="email" name="email" required><br>
+				<label for="birthday">Birthday</label><br>
+				<label for="day">Day</label>
+				<input for="day" id="day" type="number" min="1" max="31" placeholder="1"><br>
+				<label for="month">Month</label>
+				<input for="month" id="month" type="number" min="1" max="12" placeholder="1"><br>
+				<label for="year">Year</label>
+				<input for="year" id="year" type="number" min="1920" max="2020" placeholder="2020"><br>
+				<br />
+				<br />
+				<button type="reset" value="reset" class="btn_submit">Reset</button>
+				<button id="submit" name="submit" type="submit" class="btn_submit"
+					onclick="addNewUser()">Submit</button>
+				<br />
+			</form>
 		</div>
-		<div id="game">
-			<canvas id="canvas" height="600" width="600"></canvas>
+		<div id="login" class="tabcontent">
+			<form id="login_f" class="form">
+				<label for="login_username">Username</label>
+				<input type="text" id="login_username" name="username" required><br>
+				<label for="login_password">Password</label>
+				<input type="password" id="login_password" name="password" required><br>
+				<button id="login" onclick="validateUser(event)" type="submit">Login</button>
+				<br />
+			</form>
 		</div>
-	</body>
+		<div id="game_container" class="float-container">
+			<div id="left" class="float-child">
+				<div id="game_settings" class="tabcontent">
+					<form id="game_form" name="game_form" class="form">
+						<table>
+							<tr>
+								<table id="keyboard_settings">
+									<tr>
+										<th><label for="keyboards_elements">Please Enter your keyboards
+												elements:</label><br></th>
+									</tr>
+									<tr>
+										<td><label for="key_up">Move Up: </label></td>
+										<td><input id="key_up" type="text" name="key_up" placeholder="ArrowUp"
+												onkeydown="updateUpCode()"><br></td>
+									</tr>
+									<tr>
+										<td><label for="key_down">Move Down: </label></td>
+										<td><input id="key_down" type="text" name="key_down" placeholder="ArrowDown"
+												onkeydown="updateDownCode()"><br></td>
+									</tr>
+									<tr>
+										<td><label for="key_right">Move Right: </label></td>
+										<td><input id="key_right" type="text" name="key_right" placeholder="ArrowRight"
+												onkeydown="updateRightCode()"><br></td>
+									</tr>
+									<tr>
+										<td><label for="key_left">Move Left: </label></td>
+										<td><input id="key_left" type="text" name="key_left" placeholder="ArrowLeft"
+												onkeydown="updateLeftCode()"><br></td>
+									</tr>
+								</table>
+							</tr>
+							<tr>
+								<table id="number_of_balls">
+									<tr>
+										<th><label for="number_of_balls_range">Please choose the number of
+												balls:</label>
+										</th>
+									</tr>
+									<tr>
+										<td><input type="range" id="rangeBallsInput" name="rangeInput" min="50" max="90"
+												value="50" oninput="amountBalls.value=rangeBallsInput.value"></td>
+										<td><output id="amountBalls" name="amount" for="rangeInput">50</output></td>
+									</tr>
+								</table>
+								<table>
+									<tr>
+										<th>
+											<label for="colors">Please Choose the colors of the balls:</label><br>
+										</th>
+									</tr>
+									<tr>
+										<td><label for="colors">Legendary color:</label><br></td>
+										<td><input type="color" id="favcolor_leg" name="favcolor" value="#bf00ff">
+										</td>
+									</tr>
+									<tr>
+										<td><label for="colors">Epic color:</label><br></td>
+										<td><input type="color" id="favcolor_ep" name="favcolor" value="#ff0000">
+										</td>
+									</tr>
+									<tr>
+										<td><label for="colors">Common color:</label><br></td>
+										<td><input type="color" id="favcolor_com" name="favcolor" value="#0000ff">
+										</td>
+									</tr>
+								</table>
+							</tr>
+							<tr>
+								<table>
+									<tr>
+										<th><label for="number_of_seconds">Please choose the length of the
+												game:</label>
+										</th>
+									</tr>
+									<tr>
+										<td>
+											<input id="num_seconds" type="number" name="num_seconds" min="60"
+												placeholder="60" value="60"><br>
+										</td>
+									</tr>
+								</table>
+							</tr>
+							<tr>
+								<table>
+									<tr>
+										<th><label for="number_of_monsters">Please choose the number of
+												monsters:</label>
+										</th>
+									</tr>
+									<tr>
+										<td><input type="range" id="rangeMonstersInput" name="rangeInput" min="1"
+												max="4" value="1"
+												oninput="amountMonsters.value=rangeMonstersInput.value"></td>
+										<td><output id="amountMonsters" name="amount" for="rangeInput">1</output>
+										</td>
+									</tr>
+								</table>
+							</tr>
+						</table>
+						<button id="random_btn" onclick="getRandomGameSettings()">Random</button>
+						<br />
+						<button id="play" type="submit" onclick="openGamePage()">Play</button>
+						<br />
+						<button id="restart" onclick="resetGame()">Reset Game</button>
+					</form>
+				</div>
+			</div>
+			<div id="game" style="display: none;">
+				<div id="right" class="float-child">
+					<br />
+					<br />
+					<br />
+					<table>
+						<tr>
+							<th>
+								<div id="score" style="text-align: center;">
+									<label for="lblScore">SCORE:</label>
+									<output id="lblScore" type="text">
+								</div>
+							</th>
+							<th>
+								<div id="time">
+									<label for="lblTime">TIME:</label>
+									<output id="lblTime" type="text">
+								</div>
+							</th>
+							<th>
+								<div id="lives" style="text-align: center;">
+									<label for="lblLives">LIVES:</label>
+									<output id="lblLives" type="text">
+								</div>
+							</th>
+						</tr>
+					</table>
+					<canvas id="canvas" height="950" width="950" class="canvas"></canvas>
+				</div>
+			</div>
+		</div>
+		<div id="ex1" class="modal">
+			<h1>Welcome to our Pacman!</h1>
+			<p>This website was created by Itai Katz & Tomer Seinfeld</p>
+			<p>We used the below JQuery plugins:</p>
+			<ul>
+				<li>Validation - in order to check the forms</li>
+				<li>JQuery Modal Window - in order to implement the 'About'</li>
+			</ul>
+			<p>We used the template from the website https://jquerymodal.com/</p>
+			<p>The difficulties we faced while designing the game's functionalities are:</p>
+			<ul>
+				<li>separating the different 'players' in the game (monsters, pacman and etc) into different time
+					intervals while making sure they would be drawn correctly.</li>
+				<li> Designing an efficient method for the monsters to track pacman.</li>
+			</ul>
+		</div>
+	</Content>
+
+</body>
+	<Footer style="text-align: center;" id="footer" class="float-child">
+		<br />
+		<p style="text-align: center;">
+			<h3>Contact Us</h3>
+			<p>seinfeld@post.bgu.ac.il</p>
+			<p>itaika@post.bgu.ac.il</p>
+		</p>
+		<br />
+		<br />
+	</Footer>
+
+
 </html>
