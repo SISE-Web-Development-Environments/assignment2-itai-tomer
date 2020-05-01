@@ -153,9 +153,7 @@ border-left: none;
     text-align: center;
   }
 
-  /* ADDED FROM HERE
 
-  */
   .form {
     position: relative;
     z-index: 1;
@@ -167,11 +165,7 @@ border-left: none;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   }
 
-  /*
-  #registerForm input{
-    width: 60%;
-  }
-  */
+ 
   .form input {
     font-family: "Roboto", sans-serif;
     outline: 0;
@@ -183,7 +177,6 @@ border-left: none;
     box-sizing: border-box;
     font-size: 14px;
   }
-
 
   .form button {
     font-family: "Roboto", sans-serif;
@@ -248,12 +241,36 @@ border-left: none;
   .canvas{
     background-color: rgb(150, 150, 150);
     background-image: url("./resources/board.png");
+    box-shadow: 0 0 20px 0 rgb(190, 204, 68), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   }
+
+  
+  #results{
+    font-weight:bold;
+    margin-bottom: 10px;
+    box-shadow: 0 0 20px 0 rgb(190, 204, 68), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+
+  }
+
+  #lives{
+    margin-top: 40px;
+
+  }
+
+  #time{
+    margin-top: 40px;
+  }
+
+  #score{
+    margin-top: 0px;
+  }
+  
 
   #game_form{
     margin: 0px auto 0px;
     position: block;
     padding: 30px;
+    box-shadow: 0 0 20px 0 rgb(190, 204, 68), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   }
 
 #errorContainer {
@@ -275,16 +292,28 @@ border-left: none;
  
   border: 3px transparent;
 
+
 }
 
-.float-child {
-  width: 40%;
-  float: left;
+#left{
+  width: 30%;
+  float: left; 
+  margin-right: 20px;
+}
 
+#middle{
+  width: 60%;
+  float: left; 
+  margin-right: 20px;
+}
+
+#right{
+  width: 10%;
+  float: left; 
 }
 
 #footer {
-
+  float: left; 
   bottom:0px;
   width:100%;
 }
