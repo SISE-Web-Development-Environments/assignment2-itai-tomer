@@ -221,9 +221,16 @@ function Start() {
 			food.push(element);
 		}
 		else if (figure_remain > 0) {
-			board[emptyCell[0]][emptyCell[1]] = 5;
-			bonus_figure.i = emptyCell[0];
-			bonus_figure.j = emptyCell[1];
+			if (numberOfMonsters == 4) {
+				board[emptyCell[0]][emptyCell[1]] = 5;
+				bonus_figure.i = emptyCell[0];
+				bonus_figure.j = emptyCell[1];
+			}
+			else {
+				board[columns - 1][rows - 1] = 5;
+				bonus_figure.i = columns-1;
+				bonus_figure.j = rows-1;
+			}
 			figure_remain--;
 		}
 		else if (hourglass_remain > 0) {
