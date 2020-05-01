@@ -1095,6 +1095,9 @@ function defineGameSettings() {
 	food_remian_ingame = food_remain;
 	numberOfMonsters = document.getElementById("rangeMonstersInput").value;
 	timeForGame = document.getElementById("num_seconds").value;
+	if(timeForGame<60){
+		timeForGame=60;
+	}
 	show_hourglass = parseInt(timeForGame / 2);
 	show_medkit = parseInt(timeForGame / 4);
 	let tempUp = document.getElementById("key_up").value;
