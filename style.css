@@ -247,7 +247,7 @@ border-left: none;
 
   .canvas{
     background-color: rgb(150, 150, 150);
-    background-image: url("board.png");
+    background-image: url("./resources/board.png");
   }
 
   #game_form{
