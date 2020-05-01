@@ -14,9 +14,9 @@
 
 <body id="website" style="display: block;">
 	<Menu class="tab">
-			<button id="Register" class="tablinks" onclick="changePage(event,'register')">Register</button>
-			<button id="Login" class="tablinks" onclick="changePage(event,'login')">Login</button>
-			<p><a href="#ex1" rel="modal:open" class="tablinks" role="button">About</a></p>
+		<button id="Register" class="tablinks" onclick="changePage(event,'register')">Register</button>
+		<button id="Login" class="tablinks" onclick="changePage(event,'login')">Login</button>
+		<p><a href="#ex1" rel="modal:open" class="tablinks" role="button">About</a></p>
 	</Menu>
 	<br />
 	<div id="hello_user" style="text-align: left;">
@@ -33,7 +33,7 @@
 				<h3 style="text-align: center;">Itai Katz & Tomer Seinfeld</h3>
 			</tr>
 		</table>
-		
+
 		<img src="./resources/logo_ghost_s.png" alt="Italian Trulli" style="width:200px;height:200px;" class="logo">
 	</Header>
 
@@ -196,33 +196,26 @@
 				</div>
 			</div>
 			<div id="game" style="display: none;" class="tabcontent">
-				<div id="right" class="float-child">
-					<br />
-					<br />
-					<br />
-					<table>
-						<tr>
-							<th>
-								<div id="score" style="text-align: center;">
-									<label for="lblScore">SCORE:</label>
-									<output id="lblScore" type="text">
-								</div>
-							</th>
-							<th>
-								<div id="time">
-									<label for="lblTime" style="text-align: center;">TIME:</label>
-									<output id="lblTime" type="text">
-								</div>
-							</th>
-							<th>
-								<div id="lives" style="text-align: center;">
-									<label for="lblLives">LIVES:</label>
-									<output id="lblLives" type="text">
-								</div>
-							</th>
-						</tr>
-					</table>
+				<div id="middle" class="float-child">
 					<canvas id="canvas" height="950" width="950" class="canvas"></canvas>
+				</div>
+				<div id="right" class="float-child">
+					<form id="results" class="form">
+						<div id="score" style="text-align: center;">
+							<label for="lblScore">SCORE:</label>
+							<output id="lblScore" type="text">
+						</div>
+
+						<div id="time">
+							<label for="lblTime" style="text-align: center;">TIME:</label>
+							<output id="lblTime" type="text">
+						</div>
+
+						<div id="lives" style="text-align: center;">
+							<label for="lblLives">LIVES:</label>
+							<output id="lblLives" type="text">
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -245,16 +238,16 @@
 	</Content>
 
 </body>
-	<Footer style="text-align: center;" id="footer" class="float-child">
-		<br />
-		<p style="text-align: center;">
-			<h3>Contact Us</h3>
-			<p>seinfeld@post.bgu.ac.il</p>
-			<p>itaika@post.bgu.ac.il</p>
-		</p>
-		<br />
-		<br />
-	</Footer>
+<Footer style="text-align: center;" id="footer" class="float-child">
+	<br />
+	<p style="text-align: center;">
+		<h3>Contact Us</h3>
+		<p>seinfeld@post.bgu.ac.il</p>
+		<p>itaika@post.bgu.ac.il</p>
+	</p>
+	<br />
+	<br />
+</Footer>
 
 
 </html>
