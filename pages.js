@@ -41,7 +41,7 @@ $(function () {
             else {
                 return false;
             }
-        }, "Please Enter this field without numbers");
+        }, "Please enter this field without numbers");
 
         $.validator.addMethod("validatePassword", function (value) {
             var regLetter = new RegExp("[A-Za-z]");
@@ -120,11 +120,11 @@ $(function () {
                 },
                 firstname:{
                     required: "Please fill the first name",
-                    validateStringWithoutInt: "Please Enter the first name without number"
+                    validateStringWithoutInt: "Please enter the first name field without a number"
                 },
                 lastname:{
                     required: "Please fill the last name",
-                    validateStringWithoutInt: "Please Enter the last name without number"
+                    validateStringWithoutInt: "Please enter the last name field without a number"
                 },
                 email:{
                     required: "Please fill the email",
