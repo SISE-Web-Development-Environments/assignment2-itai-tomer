@@ -206,6 +206,14 @@ function validateUser(event) {
 
 function changePage(event, page) {
 
+    if(page =='register' || page =='login'){
+        if(document.getElementById("game").style.display!="none"){
+            $(document).ready(function(){
+                resetGame();
+            });
+        }
+    }
+    
     // Get all elements with class="tabcontent" and hide them
     var tabcontent = document.getElementsByClassName("tabcontent");
     var i = 0;
@@ -213,6 +221,7 @@ function changePage(event, page) {
         tabcontent[i].style.display = "none";
         i++;
     }
+
 
     var welcome = document.getElementById("welcome_page").style.display="none";
 
