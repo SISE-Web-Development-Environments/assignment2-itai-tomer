@@ -22,6 +22,9 @@ $(function () {
         $("#login_f").submit(function(e){
             e.preventDefault();
         })
+        $("#staticSettings").submit(function(e){
+            e.preventDefault();    
+        })
         users.push(pUser = {
             username: "p",
             password: "p",
@@ -206,8 +209,8 @@ function validateUser(event) {
 
 function changePage(event, page) {
 
-    if(page =='register' || page =='login'){
-        if(document.getElementById("game").style.display!="none"){
+    if(page =='register' || page =='login' || page=='game_settings'){
+        if(document.getElementById("entireGame").style.display!="none"){
             $(document).ready(function(){
                 resetGame();
             });
@@ -243,11 +246,14 @@ function changePage(event, page) {
 }
 
 function openGamePage(){
-    var gamePage = document.getElementById("game");
+    var gamePage = document.getElementById("entireGame");
     gamePage.style.display="block";
-    document.getElementById("play").disabled = true;
-	document.getElementById("restart").disabled = false;
+    var settingsPage = document.getElementById("game_settings");
+    settingsPage.style.display="none";
+    //document.getElementById("play").disabled = true;
+    //document.getElementById("restart").disabled = false;
     Start();
+    updateStaticValues();
 }
 
 function getRandomGameSettings(){
@@ -276,6 +282,7 @@ function getRandomGameSettings(){
     document.getElementById("num_seconds").value=Math.floor((Math.random()*(180-60)+60));
 
 }
+
 
 
 

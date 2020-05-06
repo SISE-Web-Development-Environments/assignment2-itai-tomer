@@ -68,6 +68,7 @@ var hourglass_eaten;
 var show_medkit;
 var medkit = new Object();
 var medkit_eaten;
+var foodForLabel;
 /*
 $(document).ready(function () {
 	context = canvas.getContext("2d");
@@ -1098,6 +1099,7 @@ function defineGameSettings() {
 	legendary_food_color = document.getElementById("favcolor_leg").value;
 	food_remain = document.getElementById("rangeBallsInput").value;
 	food_remian_ingame = food_remain;
+	foodForLabel=food_remain;
 	numberOfMonsters = document.getElementById("rangeMonstersInput").value;
 	timeForGame = document.getElementById("num_seconds").value;
 	if(timeForGame<60){
@@ -1171,8 +1173,8 @@ function resetGame() {
 	gameSound.pause();
 	gameSound.currentTime = 0;
 	deathSound = new Audio("./resources/deathSound.mp3");
-	document.getElementById("play").disabled = false;
-	document.getElementById("restart").disabled = true;
+	//document.getElementById("play").disabled = false;
+	//document.getElementById("restart").disabled = true;
 	for(let l = 0; l < columns; l++){
 		for(let k = 0; k < rows; k++) {
 			board[l][k] = 0;
@@ -1182,5 +1184,54 @@ function resetGame() {
 	food = [];
 	context.clearRect(0, 0, canvas.width, canvas.height);
 	//Start();
+	//openGamePage();
 }
+
+function startGameAgain(){
+	resetGame();
+	Start();
+}
+
+function updateStaticValues(){
+	if(upwardsKey==38){
+		document.getElementById("staticArrowUp").innerText="Key Up: "+'ArrowUp';
+	}
+	else{
+	document.getElementById("staticArrowUp").innerText="Key Up: "+document.getElementById("key_up").value;
+	}
+	if(downwardsKey==40){
+		document.getElementById("staticArrowDown").innerText="Key Down: "+'ArrowDown';
+	}
+	else{
+		document.getElementById("staticArrowDown").innerText="Key Down: "+document.getElementById("key_down").value;
+	}
+	if(leftKey==37){
+		document.getElementById("staticArrowLeft").innerText="Key Left: "+'ArrowLeft';
+	}
+	else{
+		document.getElementById("staticArrowLeft").innerText="Key Left: "+document.getElementById("key_left").value;
+	}
+	if(rightKey==39){
+		document.getElementById("staticArrowRight").innerText="Key Right: "+'ArrowRight';
+	}
+	else{
+		document.getElementById("staticArrowRight").innerText="Key Right: "+document.getElementById("key_right").value;
+	}
+	let legendary_food_remain = parseInt(foodForLabel * 0.1);
+	let epic_food_remain = parseInt(foodForLabel * 0.3);
+	let common_food_remain = parseInt(foodForLabel * 0.6);
+
+	document.getElementById("staticNumOfFood").innerText="Amount of food: "+foodForLabel;
+	document.getElementById("staticTimeOfGame").innerText="Length of game: "+timeForGame;
+	document.getElementById("staticNumOfMonster").innerText="Number Of Monsters: "+numberOfMonsters;
+	document.getElementById("staticColorOfLeg").innerText="Number Legendary: "+legendary_food_remain;
+	document.getElementById("staticColorOfEpic").innerText="Color of Epic: "+epic_food_remain;
+	document.getElementById("staticColorOfReg").innerText="Color of Common: "+common_food_remain;
+
+	//color
+	document.getElementById('staticColorOfLeg').style.color = document.getElementById("favcolor_leg").value;
+	document.getElementById('staticColorOfEpic').style.color = document.getElementById("favcolor_ep").value;
+	document.getElementById('staticColorOfReg').style.color = document.getElementById("favcolor_com").value;
+}
+
 
