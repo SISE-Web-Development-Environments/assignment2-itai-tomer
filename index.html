@@ -3,7 +3,9 @@
 
 <head>
 	<link rel="stylesheet" type="text/css" href="style.css" />
+	
 	<script src="./jquery-3.4.1.slim.min.js"></script>
+	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
@@ -76,6 +78,109 @@
 				<br />
 			</form>
 		</div>
+		<div id="game_settings" class="tabcontent">
+			<form id="game_form" name="game_form" class="form">
+				<table>
+					<tr>
+						<table id="keyboard_settings">
+							<tr>
+								<th><label for="keyboards_elements">Please Enter your keyboards
+										elements:</label><br></th>
+							</tr>
+							<tr>
+								<td><label for="key_up">Move Up: </label></td>
+								<td><input id="key_up" type="text" name="key_up" placeholder="ArrowUp"
+										onkeydown="updateUpCode()"><br></td>
+							</tr>
+							<tr>
+								<td><label for="key_down">Move Down: </label></td>
+								<td><input id="key_down" type="text" name="key_down" placeholder="ArrowDown"
+										onkeydown="updateDownCode()"><br></td>
+							</tr>
+							<tr>
+								<td><label for="key_right">Move Right: </label></td>
+								<td><input id="key_right" type="text" name="key_right" placeholder="ArrowRight"
+										onkeydown="updateRightCode()"><br></td>
+							</tr>
+							<tr>
+								<td><label for="key_left">Move Left: </label></td>
+								<td><input id="key_left" type="text" name="key_left" placeholder="ArrowLeft"
+										onkeydown="updateLeftCode()"><br></td>
+							</tr>
+						</table>
+					</tr>
+					<tr>
+						<table id="number_of_balls">
+							<tr>
+								<th><label for="number_of_balls_range">Please choose the number of
+										balls:</label>
+								</th>
+							</tr>
+							<tr>
+								<td><input type="range" id="rangeBallsInput" name="rangeInput" min="50" max="90"
+										value="50" oninput="amountBalls.value=rangeBallsInput.value"></td>
+								<td><output id="amountBalls" name="amount" for="rangeInput">50</output></td>
+							</tr>
+						</table>
+						<table>
+							<tr>
+								<th>
+									<label for="colors">Please Choose the colors of the balls:</label><br>
+								</th>
+							</tr>
+							<tr>
+								<td><label for="colors">Legendary color:</label><br></td>
+								<td><input type="color" id="favcolor_leg" name="favcolor" value="#bf00ff">
+								</td>
+							</tr>
+							<tr>
+								<td><label for="colors">Epic color:</label><br></td>
+								<td><input type="color" id="favcolor_ep" name="favcolor" value="#ff0000">
+								</td>
+							</tr>
+							<tr>
+								<td><label for="colors">Common color:</label><br></td>
+								<td><input type="color" id="favcolor_com" name="favcolor" value="#0000ff">
+								</td>
+							</tr>
+						</table>
+					</tr>
+					<tr>
+						<table>
+							<tr>
+								<th><label for="number_of_seconds">Please choose the length of the
+										game:</label>
+								</th>
+							</tr>
+							<tr>
+								<td>
+									<input id="num_seconds" type="number" name="num_seconds" min="60" placeholder="60"
+										value="60"><br>
+								</td>
+							</tr>
+						</table>
+					</tr>
+					<tr>
+						<table>
+							<tr>
+								<th><label for="number_of_monsters">Please choose the number of
+										monsters:</label>
+								</th>
+							</tr>
+							<tr>
+								<td><input type="range" id="rangeMonstersInput" name="rangeInput" min="1" max="4"
+										value="1" oninput="amountMonsters.value=rangeMonstersInput.value"></td>
+								<td><output id="amountMonsters" name="amount" for="rangeInput">1</output>
+								</td>
+							</tr>
+						</table>
+					</tr>
+				</table>
+				<button id="random_btn" onclick="getRandomGameSettings()">Random</button>
+				<br />
+				<button id="play" type="submit" onclick="openGamePage()">Play</button>
+			</form>
+		</div>
 		<div id="login" class="tabcontent">
 			<form id="login_f" class="form">
 				<label for="login_username">Username</label>
@@ -86,136 +191,48 @@
 				<br />
 			</form>
 		</div>
-		<div id="game_container" class="float-container">
-			<div id="left" class="float-child">
-				<div id="game_settings" class="tabcontent">
-					<form id="game_form" name="game_form" class="form">
-						<table>
-							<tr>
-								<table id="keyboard_settings">
-									<tr>
-										<th><label for="keyboards_elements">Please Enter your keyboards
-												elements:</label><br></th>
-									</tr>
-									<tr>
-										<td><label for="key_up">Move Up: </label></td>
-										<td><input id="key_up" type="text" name="key_up" placeholder="ArrowUp"
-												onkeydown="updateUpCode()"><br></td>
-									</tr>
-									<tr>
-										<td><label for="key_down">Move Down: </label></td>
-										<td><input id="key_down" type="text" name="key_down" placeholder="ArrowDown"
-												onkeydown="updateDownCode()"><br></td>
-									</tr>
-									<tr>
-										<td><label for="key_right">Move Right: </label></td>
-										<td><input id="key_right" type="text" name="key_right" placeholder="ArrowRight"
-												onkeydown="updateRightCode()"><br></td>
-									</tr>
-									<tr>
-										<td><label for="key_left">Move Left: </label></td>
-										<td><input id="key_left" type="text" name="key_left" placeholder="ArrowLeft"
-												onkeydown="updateLeftCode()"><br></td>
-									</tr>
-								</table>
-							</tr>
-							<tr>
-								<table id="number_of_balls">
-									<tr>
-										<th><label for="number_of_balls_range">Please choose the number of
-												balls:</label>
-										</th>
-									</tr>
-									<tr>
-										<td><input type="range" id="rangeBallsInput" name="rangeInput" min="50" max="90"
-												value="50" oninput="amountBalls.value=rangeBallsInput.value"></td>
-										<td><output id="amountBalls" name="amount" for="rangeInput">50</output></td>
-									</tr>
-								</table>
-								<table>
-									<tr>
-										<th>
-											<label for="colors">Please Choose the colors of the balls:</label><br>
-										</th>
-									</tr>
-									<tr>
-										<td><label for="colors">Legendary color:</label><br></td>
-										<td><input type="color" id="favcolor_leg" name="favcolor" value="#bf00ff">
-										</td>
-									</tr>
-									<tr>
-										<td><label for="colors">Epic color:</label><br></td>
-										<td><input type="color" id="favcolor_ep" name="favcolor" value="#ff0000">
-										</td>
-									</tr>
-									<tr>
-										<td><label for="colors">Common color:</label><br></td>
-										<td><input type="color" id="favcolor_com" name="favcolor" value="#0000ff">
-										</td>
-									</tr>
-								</table>
-							</tr>
-							<tr>
-								<table>
-									<tr>
-										<th><label for="number_of_seconds">Please choose the length of the
-												game:</label>
-										</th>
-									</tr>
-									<tr>
-										<td>
-											<input id="num_seconds" type="number" name="num_seconds" min="60"
-												placeholder="60" value="60"><br>
-										</td>
-									</tr>
-								</table>
-							</tr>
-							<tr>
-								<table>
-									<tr>
-										<th><label for="number_of_monsters">Please choose the number of
-												monsters:</label>
-										</th>
-									</tr>
-									<tr>
-										<td><input type="range" id="rangeMonstersInput" name="rangeInput" min="1"
-												max="4" value="1"
-												oninput="amountMonsters.value=rangeMonstersInput.value"></td>
-										<td><output id="amountMonsters" name="amount" for="rangeInput">1</output>
-										</td>
-									</tr>
-								</table>
-							</tr>
-						</table>
-						<button id="random_btn" onclick="getRandomGameSettings()">Random</button>
-						<br />
-						<button id="play" type="submit" onclick="openGamePage()">Play</button>
-						<br />
-						<button id="restart" onclick="resetGame()">Reset Game</button>
+		<div id="entireGame" class="tabcontent">
+			<div id="game_container" class="float-container">
+				<div id="left" class="float-child">
+					<form id="staticSettings" class="form">
+						<label id="staticArrowUp" for="staticArrowUp">""</label><br />
+						<label id="staticArrowDown" for="staticArrowDown">""</label><br />
+						<label id="staticArrowLeft" for="staticArrowLeft">""</label><br />
+						<label id="staticArrowRight" for="staticArrowRight">""</label><br />
+						<label id="staticNumOfFood" for="staticNumOfFood">""</label><br />
+						<label id="staticTimeOfGame" for="staticTimeOfGame">""</label><br />
+						<label id="staticNumOfMonster" for="staticNumOfMonster">""</label><br />
+						<label id="staticColorOfLeg" for="staticColorOfLeg">""</label><br />
+						<label id="staticColorOfEpic" for="staticColorOfEpic">""</label><br />
+						<label id="staticColorOfReg" for="staticColorOfReg">""</label>
+						<br/>
+						<button id="restartGame" onclick="startGameAgain()">Reset Game</button>
+						<br/>
+						<button id="backToSettings" onclick="changePage(event,'game_settings')">Reset Settings</button>
 					</form>
 				</div>
-			</div>
-			<div id="game" style="display: none;" class="tabcontent">
-				<div id="middle" class="float-child">
-					<canvas id="canvas" height="950" width="950" class="canvas"></canvas>
-				</div>
-				<div id="right" class="float-child">
-					<form id="results" class="form">
-						<div id="score" style="text-align: center;">
-							<label for="lblScore">SCORE:</label>
-							<output id="lblScore" type="text">
-						</div>
+				<div id="game">
+					<div id="middle" class="float-child">
+						<canvas id="canvas" height="950" width="950" class="canvas"></canvas>
+					</div>
+					<div id="right" class="float-child">
+						<form id="results" class="form">
+							<div id="score" style="text-align: center;">
+								<label for="lblScore">SCORE:</label>
+								<output id="lblScore" type="text">
+							</div>
 
-						<div id="time">
-							<label for="lblTime" style="text-align: center;">TIME:</label>
-							<output id="lblTime" type="text">
-						</div>
+							<div id="time">
+								<label for="lblTime" style="text-align: center;">TIME:</label>
+								<output id="lblTime" type="text">
+							</div>
 
-						<div id="lives" style="text-align: center;">
-							<label for="lblLives">LIVES:</label>
-							<output id="lblLives" type="text">
-						</div>
-					</form>
+							<div id="lives" style="text-align: center;">
+								<label for="lblLives">LIVES:</label>
+								<output id="lblLives" type="text">
+							</div>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
