@@ -96,6 +96,7 @@ function Start() {
 	var common_food_remain = parseInt(food_remain * 0.6);
 	while (food_remain != (legendary_food_remain + epic_food_remain + common_food_remain)) { //make sure the numbers match
 		common_food_remain = common_food_remain + (food_remain - legendary_food_remain - epic_food_remain - common_food_remain);
+		food_remian_ingame = common_food_remain + epic_food_remain + legendary_food_remain;
 	}
 	var pacman_remain = 1;
 	var figure_remain = 1;
@@ -453,17 +454,17 @@ function UpdatePosition() {
 	if (time_elapsed <= show_medkit && !medkit_eaten) {
 		allowShowingMedkit();
 	}
-	if (food_remian_ingame <= 0 && bonus_eaten) {
-		gameSound.pause()
+	if (food_remian_ingame < 1 && bonus_eaten) {
+		gameSound.pause();
 		window.clearInterval(interval);
-		window.clearInterval(monsters_interval);;
+		window.clearInterval(monsters_interval);
 		window.alert("Winner!!!");
 	} else if (time_elapsed <= 0) {
 		if (score < 100) {
 			gameSound.pause()
 			deathSound.play();
 			window.clearInterval(interval);
-			window.clearInterval(monsters_interval);;
+			window.clearInterval(monsters_interval);
 			window.alert("You are better than " + score + " points!");
 		}
 		else {
